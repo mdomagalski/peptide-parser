@@ -1,0 +1,27 @@
+<link rel="import" href="../polymer/polymer.html">
+<script src="../fishtones-js/dist/fishtones-js-bundle-min.js"></script>
+
+<dom-module id="peptide-parser">
+    <template></template>
+    <script>
+        Polymer({
+            is: 'peptide-parser',
+            properties: {
+                peptideStrings: {
+                    type: Array,
+                    observer: '_parsePeptides'
+                },
+                peptideObjects: {
+                    type: Array,
+                    value: []
+                }
+            },
+            _parsePeptides: function() {
+                for(var idx in this.peptideStrings){
+                    this.peptideObjects[idx]=
+                        new fishtones.dry.RichSequence().fromString(this.peptideStrings[idx]);
+                }
+            }
+        });
+    </script>
+</dom-module>
